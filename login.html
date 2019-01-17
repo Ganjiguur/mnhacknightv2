@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+	<!-- Javascript SDKs-->
+	<script src="js/amazon-cognito-identity.min.js"></script>   
+	<script src="js/config.js"></script>
+
+  </head>
+  <body>
+    <form>
+      <h1>Please sign in</h1>
+
+      <input type="text" id="inputUsername"  placeholder="Email address" name="username" required autofocus>
+      <input type="password" id="inputPassword"  placeholder="Password" name="password" required>    
+      <button type="button" onclick="signInButton()">Sign in</button>
+	  <button type="button" onclick="forgotPasswordButton()">Forgot Password</button>
+    </form>
+
+
+<script>
+
+  function signInButton() 
+  {
+	// Initiating pool data
+	var poolData = {
+        UserPoolId : _config.cognito.userPoolId, 
+        ClientId : _config.cognito.clientId, 
+    };
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    var userData = {
+        Username : document.getElementById("inputUsername").value,
+        Pool : userPool,
+    };
+	// Getting CognitoUser
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    
+	// collecting Auth datas
+	var authenticationData = {
+        Username : document.getElementById("inputUsername").value,
+        Password : document.getElementById("inputPassword").value,
+    };
+	// Init auth instance
+	var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+	// Check authenticate on Cognito User
+	cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: function (result) {
+			var accessToken = result.getAccessToken().getJwtToken();
+			console.log(accessToken);	
+			window.open("./profile.html");
+        },
+
+        onFailure: function(err) {
+            alert(err.message || JSON.stringify(err));
+        },
+    });
+  }
+  
+  function forgotPasswordButton() 
+  {
+	// Initiating pool data
+	var poolData = {
+        UserPoolId : _config.cognito.userPoolId, 
+        ClientId : _config.cognito.clientId, 
+    };
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    var userData = {
+        Username : document.getElementById("inputUsername").value,
+        Pool : userPool,
+    };
+	// Getting CognitoUser
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+		
+    cognitoUser.forgotPassword({
+        onSuccess: function (result) {
+            console.log('call result: ' + result);
+        },
+        onFailure: function(err) {
+            alert(err);
+			console.log(err);
+        },
+        inputVerificationCode() {
+            var verificationCode = prompt('Please input verification code ' ,'');
+            var newPassword = prompt('Enter new password ' ,'');
+            cognitoUser.confirmPassword(verificationCode, newPassword, this);
+        }
+    });
+  }
+  
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
