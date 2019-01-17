@@ -10,6 +10,16 @@
 
   </head>
   <body>
+  
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=1761717067261753&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-login-button" data-width="20" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
     <form>
       <h1>Please sign in</h1>
 
@@ -18,7 +28,6 @@
       <button type="button" onclick="signInButton()">Sign in</button>
 	  <button type="button" onclick="forgotPasswordButton()">Forgot Password</button>
     </form>
-
 
 <script>
 
