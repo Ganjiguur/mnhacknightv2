@@ -10,6 +10,9 @@
 - Amplify demo - https://www.youtube.com/watch?v=-ZrYlsEBLmo
 - User Identity & very useful demo - https://serverless-stack.com/
 
+###
+1. Built-in - {domain}/login?response_type=token&client_id={clientId}&redirect_uri={Redirect URI must be same!}
+
 
 
 
