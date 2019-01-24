@@ -11,7 +11,19 @@
 - User Identity & very useful demo - https://serverless-stack.com/
 
 ###
-1. Built-in - {domain}/login?response_type=token&client_id={clientId}&redirect_uri={Redirect URI must be same!}
+1. Built-in  
+- everything in default
+- {domain}/login?response_type=token&client_id={clientId}&redirect_uri={Redirect URI must be same!}
+2. Javascript  
+- email address & phone
+- Select required fields
+- Set password policy
+- Verification type - link
+- Unset Generate client secret
+- Create App client
+- Create domain name
+- replace JS 3 fields
+
 
 
 
