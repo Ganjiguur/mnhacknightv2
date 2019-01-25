@@ -1,4 +1,6 @@
 
+![](https://s3-ap-southeast-1.amazonaws.com/fibo-resources/hacknight2.jpg)
+
 ### References 
 - Intorduction - https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html  
 - OAuth2 docs - https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/
